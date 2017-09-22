@@ -6,7 +6,23 @@ image = cv2.imread("image/gameboy.jpg")
 # convert image to grayscale
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # blur the image slightly to remove noise.
-gray = cv2.bilateralFilter(gray, 11, 17, 17) 
+gray = cv2.bilateralFilter(gray, 11, 17, 17)
+# funtion for removing noise but keeping the edge
+# void cv::bilateralFilter (InputArray src, OutputArray dst, int d, double sigmaColor, double sigmaSpace, 
+# int borderType = BORDER_DEFAULT)
+# src	Source 8-bit or floating-point, 1-channel or 3-channel image.
+# dst	Destination image of the same size and type as src .
+# d	Diameter of each pixel neighborhood that is used during filtering. If it is non-positive, it is computed 
+#       from sigmaSpace.
+# sigmaColor	Filter sigma in the color space. A larger value of the parameter means that farther colors within 
+#               the pixel neighborhood (see sigmaSpace) will be mixed together, resulting in larger areas of semi-equal 
+#               color.
+# sigmaSpace	Filter sigma in the coordinate space. A larger value of the parameter means that farther pixels will 
+#               influence each other as long as their colors are close enough (see sigmaColor ). When d>0, it specifies 
+#               the neighborhood size regardless of sigmaSpace. Otherwise, d is proportional to sigmaSpace.
+# borderType	border mode used to extrapolate pixels outside of the image, see cv::BorderTypes
+
+
 #gray = cv2.GaussianBlur(gray, (5, 5), 0) is an alternative way to blur the image
 # canny edge detection
 edged = cv2.Canny(gray, 30, 200)
